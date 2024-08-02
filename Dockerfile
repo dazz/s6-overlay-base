@@ -1,6 +1,4 @@
-FROM alpine:3
-
-ENV S6_PATH=/s6/root
+FROM alpine:3 AS s6
 
 ARG TARGETARCH
 ARG TARGETVARIANT
@@ -26,3 +24,6 @@ RUN apk add --no-cache curl jq \
     && mkdir -p /s6/root \
     && tar -C /s6/root -Jxpf /tmp/s6-overlay-noarch.tar.xz \
     && tar -C /s6/root -Jxpf /tmp/s6-overlay-${S6_PLATFORM}.tar.xz
+
+FROM scratch
+COPY --from=s6 /s6/root /s6/root
