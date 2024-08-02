@@ -42,6 +42,7 @@ jobs:
           else
             echo "::set-output name=exists::false"
           fi
+          exit 0
 
   build-and-push:
     runs-on: ubuntu-latest
