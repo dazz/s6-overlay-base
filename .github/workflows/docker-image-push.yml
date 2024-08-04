@@ -39,8 +39,10 @@ jobs:
           docker pull "$IMAGE_NAME:$LATEST_TAG" &> /dev/null
           if [ $? -eq 0 ]; then
             echo "image_exists=true" >> $GITHUB_OUTPUT
+            echo "image_exists=true"
           else
             echo "image_exists=false" >> $GITHUB_OUTPUT
+            echo "image_exists=false"
           fi
 
   build-and-push:
